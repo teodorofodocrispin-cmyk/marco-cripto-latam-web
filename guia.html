@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guía gratuita — Fecha límite regulatoria cripto en Brasil</title>
+<meta name="description" content="Descargá gratis la guía con las reglas clave (fechas, montos, prohibiciones) que tu equipo de cumplimiento necesita conocer sobre la nueva regulación cripto de Brasil.">
+<style>
+  :root {
+    --acento: #0a5c75;
+    --texto: #16232a;
+    --texto-suave: #4a555c;
+    --borde: #e3e8ea;
+    --fondo-suave: #f2f8fa;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    color: var(--texto);
+    line-height: 1.6;
+    background: #fff;
+  }
+
+  header { text-align: center; padding: 40px 20px 10px; }
+  header img { width: 130px; }
+
+  .hero {
+    background: linear-gradient(160deg, #06313f 0%, #0a5c75 55%, #2f6fed 100%);
+    color: #fff;
+    text-align: center;
+    padding: 44px 20px 56px;
+  }
+  .hero .etiqueta {
+    font-size: 12.5px; letter-spacing: 1px; text-transform: uppercase; opacity: 0.8;
+    margin-bottom: 14px;
+  }
+  .hero h1 { font-size: 28px; font-weight: 400; margin: 0 0 14px; max-width: 560px; margin-left: auto; margin-right: auto; }
+  .hero p { font-size: 16px; opacity: 0.92; max-width: 520px; margin: 0 auto; }
+
+  .contenedor { max-width: 560px; margin: -30px auto 0; padding: 0 20px 60px; position: relative; }
+
+  .tarjeta-form {
+    background: #fff; border-radius: 12px; box-shadow: 0 8px 30px rgba(10,40,50,0.15);
+    padding: 32px 28px; margin-bottom: 8px;
+  }
+  .tarjeta-form h2 { font-size: 17px; margin: 0 0 18px; color: var(--acento); }
+  label { display: block; font-size: 12.5px; font-weight: 600; color: var(--texto-suave); margin: 14px 0 5px; }
+  input, select {
+    width: 100%; padding: 11px 12px; border: 1px solid var(--borde); border-radius: 6px;
+    font-size: 14.5px; font-family: inherit; color: var(--texto);
+  }
+  .btn-enviar {
+    width: 100%; margin-top: 22px; background: var(--acento); color: #fff; border: none;
+    padding: 14px; border-radius: 6px; font-size: 15px; font-weight: 700; cursor: pointer;
+  }
+  .btn-enviar:disabled { opacity: 0.6; cursor: default; }
+  .nota-privacidad { font-size: 11.5px; color: #97a2a8; margin-top: 12px; text-align: center; }
+  .error { color: #b3261e; font-size: 13px; margin-top: 10px; display: none; }
+
+  .guia { display: none; }
+  .guia h2 { color: var(--acento); font-size: 18px; margin: 28px 0 6px; }
+  .guia p.intro { color: var(--texto-suave); font-size: 14px; margin-bottom: 20px; }
+  .punto { display: flex; gap: 10px; margin-bottom: 14px; padding-left: 2px; }
+  .punto .marca { flex: 0 0 20px; color: var(--acento); font-weight: 700; }
+  .punto p { margin: 0; font-size: 14.5px; }
+  .punto strong { display: block; margin-bottom: 2px; }
+  .punto span { color: var(--texto-suave); font-size: 13.5px; }
+
+  .cta-completo {
+    background: var(--fondo-suave); border-radius: 10px; padding: 24px; text-align: center; margin-top: 30px;
+  }
+  .cta-completo p { font-size: 13.5px; color: var(--texto-suave); margin: 0 0 14px; }
+  .cta-completo a {
+    display: inline-block; background: var(--acento); color: #fff; padding: 12px 26px;
+    border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 14px;
+  }
+
+  footer { text-align: center; padding: 24px 20px 40px; font-size: 12px; color: #97a2a8; }
+</style>
+</head>
+<body>
+
+<header>
+  <img src="https://spulvcxkuksqneuxbxvh.supabase.co/storage/v1/object/public/branding/marco-cripto-latam-logo.png" alt="Marco Cripto LATAM">
+</header>
+
+<div class="hero">
+  <div class="etiqueta">Guía gratuita — Regulación cripto en Brasil</div>
+  <h1>Brasil le puso fecha límite a tu operación cripto: 30 de octubre de 2026</h1>
+  <p>Descargá gratis las reglas clave —fechas, montos y prohibiciones— que tu equipo de cumplimiento necesita conocer, cada una citada textualmente contra el documento oficial.</p>
+</div>
+
+<div class="contenedor">
+
+  <div class="tarjeta-form" id="tarjeta-form">
+    <h2>Recibí la guía ahora, sin costo</h2>
+    <form id="form-lead">
+      <label for="nombre">Nombre</label>
+      <input type="text" id="nombre" name="nombre" required>
+
+      <label for="email">Correo de trabajo</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="empresa">Empresa</label>
+      <input type="text" id="empresa" name="empresa">
+
+      <label for="pais">País donde operás</label>
+      <select id="pais" name="pais">
+        <option value="Brasil">Brasil</option>
+        <option value="México">México</option>
+        <option value="Colombia">Colombia</option>
+        <option value="Argentina">Argentina</option>
+        <option value="Chile">Chile</option>
+        <option value="Otro">Otro</option>
+      </select>
+
+      <button type="submit" class="btn-enviar" id="btn-enviar">Quiero la guía gratis →</button>
+      <div class="error" id="error-msg">No pudimos procesar tu solicitud. Probá de nuevo en un momento.</div>
+      <div class="nota-privacidad">Sin spam. Podés darte de baja cuando quieras.</div>
+    </form>
+  </div>
+
+  <div class="guia" id="guia">
+    <h2>Lo que necesitás saber</h2>
+    <p class="intro">Extraído y verificado, cita por cita, contra las Resoluciones BCB n.º 519, 520 y 521.</p>
+
+    <div class="punto"><span class="marca">📅</span><p><strong>30 de octubre de 2026</strong><span>instituciones autorizadas no podrán operar con VASPs no autorizados. Sin autorización ni solicitud en trámite para esa fecha, perdés el acceso a bancos e instituciones de pago brasileñas.</span></p></div>
+    <div class="punto"><span class="marca">📅</span><p><strong>270 días desde el 2 de febrero de 2026</strong><span>plazo para que empresas ya operando pidan autorización formal ante el Banco Central.</span></p></div>
+    <div class="punto"><span class="marca">💰</span><p><strong>US$100,000</strong><span>tope por transferencia internacional con contraparte no autorizada de cambio.</span></p></div>
+    <div class="punto"><span class="marca">🚫</span><p><strong>Prohibido operar desde coworking o espacio virtual</strong><span>la norma exige domicilio físico exclusivo.</span></p></div>
+    <div class="punto"><span class="marca">🚫</span><p><strong>Prohibido ofrecer stablecoins con reservas controladas por algoritmos</strong><span>afecta directamente a cualquier modelo algorítmico.</span></p></div>
+    <div class="punto"><span class="marca">📋</span><p><strong>Autorización previa del Banco Central obligatoria</strong><span>operar sin ella expone a un cierre forzoso de los servicios en Brasil.</span></p></div>
+
+    <div class="cta-completo">
+      <p>Esto es solo el resumen. La edición completa —69 hallazgos citados uno por uno, y actualizaciones cada 15 días sobre Brasil, México, Colombia, Argentina y Chile— está disponible por suscripción.</p>
+      <a href="https://marcocriptolatam.inscrbd.xyz/" target="_blank">Conocer Marco Cripto LATAM →</a>
+    </div>
+  </div>
+
+</div>
+
+<footer>Marco Cripto LATAM — briefing@inscrbd.xyz</footer>
+
+<script>
+  var FUNCION_URL = "https://spulvcxkuksqneuxbxvh.supabase.co/functions/v1/captura-lead";
+
+  document.getElementById("form-lead").addEventListener("submit", async function (e) {
+    e.preventDefault();
+    var boton = document.getElementById("btn-enviar");
+    var errorMsg = document.getElementById("error-msg");
+    boton.disabled = true;
+    boton.textContent = "Enviando...";
+    errorMsg.style.display = "none";
+
+    var datos = {
+      nombre: document.getElementById("nombre").value,
+      email: document.getElementById("email").value,
+      empresa: document.getElementById("empresa").value,
+      pais: document.getElementById("pais").value
+    };
+
+    try {
+      var resp = await fetch(FUNCION_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(datos)
+      });
+      if (!resp.ok) throw new Error("fallo");
+
+      document.getElementById("tarjeta-form").style.display = "none";
+      document.getElementById("guia").style.display = "block";
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } catch (err) {
+      errorMsg.style.display = "block";
+      boton.disabled = false;
+      boton.textContent = "Quiero la guía gratis →";
+    }
+  });
+</script>
+
+</body>
+</html>
