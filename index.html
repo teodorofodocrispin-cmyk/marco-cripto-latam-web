@@ -4,7 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Marco Cripto LATAM — Inteligencia regulatoria quincenal</title>
-<meta name="description" content="Briefing quincenal de inteligencia regulatoria sobre stablecoins y cripto en Brasil, México, Colombia, Argentina y Chile, con cada hallazgo citado y verificado contra la fuente oficial.">
+<meta name="description" content="Briefing quincenal de inteligencia regulatoria sobre stablecoins y cripto en Brasil, México, Colombia, Argentina, Chile y Uruguay, con cada hallazgo citado y verificado contra la fuente oficial.">
+<link rel="icon" type="image/png" href="https://spulvcxkuksqneuxbxvh.supabase.co/storage/v1/object/public/branding/icono-blanco.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --acento: #0a5c75;
@@ -13,20 +17,28 @@
     --texto-suave: #4a555c;
     --borde: #e3e8ea;
     --fondo-suave: #f2f8fa;
+    --oscuro: #05141c;
+    --oscuro-2: #06313f;
+    --vidrio: rgba(255,255,255,0.06);
+    --vidrio-borde: rgba(255,255,255,0.16);
+    --sombra: 0 10px 40px rgba(10,40,55,0.10);
   }
   * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
   body {
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
     color: var(--texto);
     line-height: 1.6;
     background: #fff;
+    -webkit-font-smoothing: antialiased;
   }
   a { color: inherit; }
+  h1, h2, h3 { font-family: "Space Grotesk", "Inter", sans-serif; }
 
   .banner-exito {
     display: none;
-    background: #0a5c75;
+    background: var(--acento);
     color: #fff;
     text-align: center;
     padding: 14px 20px;
@@ -37,82 +49,227 @@
 
   header {
     text-align: center;
-    padding: 56px 20px 20px;
+    padding: 40px 20px 8px;
   }
-  header img { width: 150px; }
+  header img { width: 148px; }
 
+  /* ---------- HERO ---------- */
   .hero {
-    background: linear-gradient(160deg, #06313f 0%, #0a5c75 55%, #2f6fed 100%);
+    position: relative;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 18% 112%, rgba(255,255,255,0.05) 1.5px, transparent 1.5px),
+      linear-gradient(160deg, var(--oscuro) 0%, var(--oscuro-2) 45%, var(--acento) 72%, var(--acento-claro) 100%);
+    background-size: 26px 26px, 100% 100%;
     color: #fff;
     text-align: center;
-    padding: 56px 20px 64px;
+    padding: 60px 20px 76px;
   }
+  .hero .glow { position: absolute; border-radius: 50%; filter: blur(70px); pointer-events: none; }
+  .hero .glow-1 {
+    width: 420px; height: 420px; top: -160px; right: -120px;
+    background: radial-gradient(circle, rgba(47,111,237,0.55), transparent 70%);
+    animation: flotar1 13s ease-in-out infinite alternate;
+  }
+  .hero .glow-2 {
+    width: 360px; height: 360px; bottom: -180px; left: -100px;
+    background: radial-gradient(circle, rgba(10,92,117,0.65), transparent 70%);
+    animation: flotar2 16s ease-in-out infinite alternate;
+  }
+  @keyframes flotar1 { from { transform: translate(0,0) scale(1); } to { transform: translate(-30px, 25px) scale(1.08); } }
+  @keyframes flotar2 { from { transform: translate(0,0) scale(1); } to { transform: translate(25px, -20px) scale(1.05); } }
+
+  .hero-contenido { position: relative; z-index: 1; }
+
+  .badge-ia {
+    display: inline-flex; align-items: center; gap: 7px;
+    background: var(--vidrio); border: 1px solid var(--vidrio-borde);
+    backdrop-filter: blur(6px);
+    padding: 7px 16px; border-radius: 999px;
+    font-size: 12.5px; font-weight: 600; letter-spacing: 0.2px;
+    margin-bottom: 26px;
+  }
+  .badge-ia svg { width: 14px; height: 14px; flex: 0 0 auto; }
+
   .hero h1 {
-    font-size: 32px;
-    font-weight: 300;
-    letter-spacing: 1px;
-    margin: 0 0 14px;
+    font-size: clamp(28px, 5vw, 40px);
+    font-weight: 500;
+    letter-spacing: 0.2px;
+    margin: 0 0 16px;
+    max-width: 700px; margin-left: auto; margin-right: auto;
   }
   .hero p.tagline {
     font-size: 17px;
-    opacity: 0.92;
-    max-width: 620px;
-    margin: 0 auto 32px;
+    color: rgba(255,255,255,0.88);
+    max-width: 600px;
+    margin: 0 auto 30px;
+    font-weight: 400;
   }
-  .hero .paises {
-    font-size: 13px;
-    letter-spacing: 0.5px;
-    opacity: 0.75;
-    text-transform: uppercase;
-    margin-bottom: 28px;
+
+  .pills-confianza {
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;
+    margin-bottom: 34px;
   }
+  .pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--vidrio); border: 1px solid var(--vidrio-borde);
+    backdrop-filter: blur(6px);
+    padding: 8px 14px; border-radius: 999px;
+    font-size: 12.5px; color: rgba(255,255,255,0.92); font-weight: 500;
+  }
+  .pill svg { width: 14px; height: 14px; opacity: 0.9; }
+
   .cta {
+    position: relative;
     display: inline-block;
     background: #fff;
     color: var(--acento);
-    padding: 15px 34px;
-    border-radius: 6px;
+    padding: 16px 36px;
+    border-radius: 8px;
     text-decoration: none;
     font-weight: 700;
     font-size: 15.5px;
+    box-shadow: 0 0 0 rgba(47,111,237,0);
+    transition: box-shadow 0.35s ease, transform 0.2s ease;
+    overflow: hidden;
+  }
+  .cta:hover {
+    box-shadow: 0 8px 30px rgba(47,111,237,0.45), 0 0 40px rgba(10,92,117,0.35);
+    transform: translateY(-2px);
+  }
+  .cta::after {
+    content: ""; position: absolute; top: 0; left: -60%; width: 40%; height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(10,92,117,0.18), transparent);
+    transform: skewX(-20deg);
+    transition: left 0.6s ease;
+  }
+  .cta:hover::after { left: 130%; }
+
+  .paises {
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 8px;
+    margin-top: 36px;
+  }
+  .pais-chip {
+    font-size: 12px; letter-spacing: 0.3px;
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.14);
+    padding: 5px 12px; border-radius: 999px; color: rgba(255,255,255,0.85);
   }
 
-  section { max-width: 780px; margin: 0 auto; padding: 56px 24px; }
+  /* ---------- SECCIONES GENERALES ---------- */
+  section { max-width: 860px; margin: 0 auto; padding: 68px 24px; }
+  section .kicker {
+    text-align: center; font-size: 12px; font-weight: 700; letter-spacing: 1.2px;
+    text-transform: uppercase; color: var(--acento-claro); margin-bottom: 10px;
+  }
   section h2 {
-    color: var(--acento);
-    font-size: 22px;
+    color: var(--texto);
+    font-size: 26px;
+    font-weight: 600;
     text-align: center;
-    margin: 0 0 40px;
+    margin: 0 0 44px;
   }
 
+  /* ---------- PROPUESTA DE VALOR ---------- */
   .props {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 28px;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 22px;
   }
-  .prop h3 { font-size: 16px; margin: 0 0 8px; color: var(--texto); }
+  .prop {
+    background: #fff;
+    border: 1px solid var(--borde);
+    border-radius: 14px;
+    padding: 26px 22px;
+    box-shadow: var(--sombra);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  }
+  .prop:hover {
+    transform: translateY(-4px);
+    border-color: rgba(47,111,237,0.35);
+    box-shadow: 0 16px 40px rgba(10,60,90,0.14);
+  }
+  .prop .icono {
+    width: 42px; height: 42px; border-radius: 11px;
+    background: linear-gradient(135deg, var(--oscuro-2), var(--acento-claro));
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 16px;
+  }
+  .prop .icono svg { width: 21px; height: 21px; color: #fff; }
+  .prop h3 { font-size: 16px; margin: 0 0 8px; color: var(--texto); font-weight: 600; }
   .prop p { font-size: 14px; color: var(--texto-suave); margin: 0; }
 
-  .precio {
-    background: var(--fondo-suave);
-    border-radius: 12px;
-    padding: 44px 32px;
-    text-align: center;
+  /* ---------- CÓMO FUNCIONA (cadena de verificación) ---------- */
+  .metodologia { background: var(--fondo-suave); }
+  .cadena {
+    display: flex; align-items: flex-start; justify-content: center;
+    gap: 0; max-width: 720px; margin: 0 auto;
   }
-  .precio .monto { font-size: 44px; font-weight: 700; color: var(--acento); }
-  .precio .periodo { font-size: 15px; color: var(--texto-suave); margin-bottom: 24px; }
-  .precio ul { list-style: none; padding: 0; margin: 0 0 28px; text-align: left; max-width: 380px; margin-left: auto; margin-right: auto; }
-  .precio li { padding: 6px 0; font-size: 14.5px; color: var(--texto-suave); }
-  .precio li::before { content: "✓ "; color: var(--acento); font-weight: 700; }
+  .nodo { flex: 1; text-align: center; position: relative; padding: 0 10px; }
+  .nodo .circulo {
+    width: 58px; height: 58px; border-radius: 50%;
+    background: #fff; border: 2px solid var(--acento-claro);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 14px; position: relative; z-index: 1;
+    box-shadow: 0 0 0 6px rgba(47,111,237,0.08);
+  }
+  .nodo .circulo svg { width: 24px; height: 24px; color: var(--acento); }
+  .nodo::before {
+    content: ""; position: absolute; top: 29px; left: -50%; width: 100%; height: 2px;
+    background: linear-gradient(90deg, var(--acento), var(--acento-claro));
+    opacity: 0.35;
+  }
+  .nodo:first-child::before { display: none; }
+  .nodo h3 { font-size: 14.5px; margin: 0 0 6px; color: var(--texto); font-weight: 600; }
+  .nodo p { font-size: 12.5px; color: var(--texto-suave); margin: 0; line-height: 1.5; }
+
+  @media (max-width: 640px) {
+    .cadena { flex-direction: column; align-items: center; gap: 30px; }
+    .nodo::before { display: none; }
+    .nodo { max-width: 300px; }
+  }
+
+  /* ---------- PRECIO ---------- */
+  .precio-wrap { position: relative; }
+  .precio {
+    position: relative;
+    background: linear-gradient(180deg, #fff, var(--fondo-suave));
+    border-radius: 18px;
+    padding: 48px 32px;
+    text-align: center;
+    border: 1px solid var(--borde);
+    box-shadow: 0 20px 60px rgba(10,60,90,0.12);
+  }
+  .precio::before {
+    content: ""; position: absolute; inset: -1.5px; border-radius: 18px; z-index: -1;
+    background: linear-gradient(135deg, var(--oscuro-2), var(--acento-claro), var(--oscuro-2));
+    opacity: 0.5;
+  }
+  .precio .monto { font-size: 46px; font-weight: 700; color: var(--acento); font-family: "Space Grotesk", sans-serif; }
+  .precio .periodo { font-size: 15px; color: var(--texto-suave); margin-bottom: 26px; }
+  .precio ul { list-style: none; padding: 0; margin: 0 0 30px; text-align: left; max-width: 380px; margin-left: auto; margin-right: auto; }
+  .precio li { padding: 7px 0; font-size: 14.5px; color: var(--texto-suave); display: flex; align-items: flex-start; gap: 8px; }
+  .precio li svg { width: 16px; height: 16px; color: var(--acento); flex: 0 0 auto; margin-top: 3px; }
+  .precio .cta { background: var(--acento); color: #fff; }
+  .precio .cta:hover { box-shadow: 0 10px 30px rgba(10,92,117,0.4); }
 
   footer {
+    position: relative;
     border-top: 1px solid var(--borde);
     text-align: center;
-    padding: 32px 20px 48px;
+    padding: 34px 20px 50px;
     font-size: 13px;
     color: var(--texto-suave);
   }
-  footer a { color: var(--acento); text-decoration: none; }
+  footer::before {
+    content: ""; position: absolute; top: -1px; left: 50%; transform: translateX(-50%);
+    width: 140px; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--acento-claro), transparent);
+  }
+  footer a { color: var(--acento); text-decoration: none; font-weight: 600; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero .glow, .cta::after { animation: none !important; transition: none !important; }
+  }
 </style>
 </head>
 <body>
@@ -126,49 +283,102 @@
 </header>
 
 <div class="hero">
-  <div class="paises">Brasil · México · Colombia · Argentina · Chile</div>
-  <h1>Marco Cripto LATAM</h1>
-  <p class="tagline">
-    Inteligencia regulatoria quincenal sobre stablecoins y criptoactivos, para equipos de
-    cumplimiento que no pueden darse el lujo de enterarse tarde de un cambio normativo.
-  </p>
-  <a class="cta" href="#" id="cta-suscribirse">Suscribirme — $199 USD/mes →</a>
+  <div class="glow glow-1"></div>
+  <div class="glow glow-2"></div>
+
+  <div class="hero-contenido">
+    <div class="badge-ia">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="12" rx="2"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/><circle cx="9" cy="14" r="1"/><circle cx="15" cy="14" r="1"/></svg>
+      Análisis con IA · verificado palabra por palabra por un humano
+    </div>
+
+    <h1>Inteligencia regulatoria quincenal sobre stablecoins y cripto en LATAM</h1>
+    <p class="tagline">
+      Para equipos de cumplimiento que no pueden darse el lujo de enterarse tarde de un
+      cambio normativo — cada hallazgo, con su cita textual exacta.
+    </p>
+
+    <div class="pills-confianza">
+      <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.5 8.5 8 11 4.5-2.5 8-6 8-11V5l-8-3Z"/><path d="m9 12 2 2 4-4"/></svg>Cita verificada</span>
+      <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Cada 15 días</span>
+      <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a13 13 0 0 1 0 18 13 13 0 0 1 0-18Z"/></svg>6 países</span>
+    </div>
+
+    <a class="cta" href="#" id="cta-suscribirse">Suscribirme — $199 USD/mes →</a>
+
+    <div class="paises">
+      <span class="pais-chip">🇧🇷 Brasil</span>
+      <span class="pais-chip">🇲🇽 México</span>
+      <span class="pais-chip">🇨🇴 Colombia</span>
+      <span class="pais-chip">🇦🇷 Argentina</span>
+      <span class="pais-chip">🇨🇱 Chile</span>
+      <span class="pais-chip">🇺🇾 Uruguay</span>
+    </div>
+  </div>
 </div>
 
 <section>
+  <div class="kicker">La diferencia</div>
   <h2>¿Por qué existe este informe?</h2>
   <div class="props">
     <div class="prop">
+      <div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.5 8.5 8 11 4.5-2.5 8-6 8-11V5l-8-3Z"/><path d="m9 12 2 2 4-4"/></svg></div>
       <h3>Cita textual verificada</h3>
       <p>Cada hallazgo incluye la cita exacta del documento oficial y su artículo de origen — nada se publica sin poder verificarse contra la fuente.</p>
     </div>
     <div class="prop">
+      <div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></div>
       <h3>Cada 15 días</h3>
-      <p>Monitoreo continuo de los reguladores clave en cinco países, resumido en un formato que se lee en minutos, no en horas.</p>
+      <p>Monitoreo continuo de los reguladores clave en la región, resumido en un formato que se lee en minutos, no en horas.</p>
     </div>
     <div class="prop">
+      <div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16l-6 8v6l-4 2v-8L4 5Z"/></svg></div>
       <h3>Sin ruido legal</h3>
       <p>Traducimos el lenguaje regulatorio a lo que realmente cambia para tu operación: plazos, montos, prohibiciones y requisitos.</p>
     </div>
     <div class="prop">
+      <div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a13 13 0 0 1 0 18 13 13 0 0 1 0-18Z"/></svg></div>
       <h3>Cobertura regional</h3>
-      <p>Un solo informe para monitorear Brasil, México, Colombia, Argentina y Chile, en vez de perseguir cinco fuentes distintas.</p>
+      <p>Un solo informe para monitorear Brasil, México, Colombia, Argentina, Chile y Uruguay, en vez de perseguir seis fuentes distintas.</p>
     </div>
   </div>
 </section>
 
-<section>
+<section class="metodologia">
+  <div class="kicker">Metodología</div>
+  <h2>Cómo garantizamos cada cita</h2>
+  <div class="cadena">
+    <div class="nodo">
+      <div class="circulo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></div>
+      <h3>Escaneo de fuentes oficiales</h3>
+      <p>Vigilamos las páginas y publicaciones de cada regulador, dos veces por semana, sin depender de un tercero que resuma por nosotros.</p>
+    </div>
+    <div class="nodo">
+      <div class="circulo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="12" rx="2"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/><circle cx="9" cy="14" r="1"/><circle cx="15" cy="14" r="1"/></svg></div>
+      <h3>Análisis con IA</h3>
+      <p>Un modelo de lenguaje extrae cada cambio relevante junto con su cita textual exacta — nunca se le permite inferir o completar con conocimiento general.</p>
+    </div>
+    <div class="nodo">
+      <div class="circulo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.5 8.5 8 11 4.5-2.5 8-6 8-11V5l-8-3Z"/><path d="m9 12 2 2 4-4"/></svg></div>
+      <h3>Revisión humana palabra por palabra</h3>
+      <p>Antes de publicar, cada cita se compara a mano contra el documento oficial. Si no coincide exactamente, se descarta.</p>
+    </div>
+  </div>
+</section>
+
+<section class="precio-wrap">
+  <div class="kicker">Suscripción</div>
   <h2>Precio</h2>
   <div class="precio">
     <div class="monto">$199</div>
     <div class="periodo">USD / mes</div>
     <ul>
-      <li>Un informe completo cada quince días, en PDF</li>
-      <li>Cobertura de Brasil, México, Colombia, Argentina y Chile</li>
-      <li>Cada afirmación respaldada por su cita textual oficial</li>
-      <li>Cancelá cuando quieras, sin permanencia</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Un informe completo cada quince días, en PDF</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Cobertura de Brasil, México, Colombia, Argentina, Chile y Uruguay</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Cada afirmación respaldada por su cita textual oficial</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Cancelá cuando quieras, sin permanencia</li>
     </ul>
-    <a class="cta" style="background:var(--acento);color:#fff;" href="#" id="cta-suscribirse-2">Suscribirme ahora →</a>
+    <a class="cta" href="#" id="cta-suscribirse-2">Suscribirme ahora →</a>
   </div>
 </section>
 
