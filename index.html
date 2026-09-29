@@ -277,6 +277,60 @@
   .cierre-final { text-align: center; padding: 6px 24px 0; }
   .cierre-final a { color: var(--acento); font-weight: 700; text-decoration: none; font-size: 15px; }
 
+  /* ---------- PLAZOS (contadores) ---------- */
+  .plazos {
+    border-radius: 18px;
+    background: linear-gradient(160deg, var(--oscuro) 0%, var(--oscuro-2) 100%);
+    color: #fff;
+  }
+  .plazos .kicker { color: var(--acento-claro); }
+  .plazos h2 { color: #fff; }
+  .plazos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 22px;
+  }
+  .plazo-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.14);
+    border-radius: 14px;
+    padding: 28px 24px;
+    text-align: center;
+  }
+  .plazo-brasil { border-color: rgba(226,87,76,0.4); }
+  .plazo-etiqueta {
+    font-size: 12.5px; letter-spacing: 0.3px; text-transform: uppercase; font-weight: 600;
+    color: rgba(255,255,255,0.68); margin-bottom: 18px; min-height: 32px;
+  }
+  .plazo-numero { display: flex; align-items: baseline; justify-content: center; gap: 8px; }
+  .plazo-numero .num { font-family: "Space Grotesk", sans-serif; font-size: 52px; font-weight: 700; color: #fff; line-height: 1; }
+  .plazo-numero .unidad { font-size: 14px; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 0.5px; }
+  .plazo-fecha { font-size: 13px; color: rgba(255,255,255,0.55); margin-top: 12px; }
+
+  .reloj-flip { display: flex; justify-content: center; gap: 8px; margin-bottom: 20px; }
+  .flip-unidad {
+    background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.14); border-radius: 8px;
+    padding: 10px 4px; min-width: 58px;
+  }
+  .flip-num {
+    display: block; font-family: "Space Grotesk", monospace, sans-serif; font-size: 26px;
+    font-weight: 700; color: #fff; letter-spacing: 1px; font-variant-numeric: tabular-nums;
+  }
+  .flip-etq { display: block; font-size: 10px; text-transform: uppercase; letter-spacing: 0.7px; color: rgba(255,255,255,0.55); margin-top: 3px; }
+
+  .plazo-barra { height: 6px; border-radius: 999px; background: rgba(255,255,255,0.14); overflow: hidden; margin-bottom: 10px; }
+  .plazo-barra-relleno {
+    height: 100%; border-radius: 999px; width: 0%;
+    background: linear-gradient(90deg, var(--acento-claro), #e2574c);
+    transition: width 1s ease;
+  }
+  .plazo-nota { font-size: 12.5px; color: rgba(255,255,255,0.62); line-height: 1.5; }
+
+  @media (max-width: 480px) {
+    .flip-unidad { min-width: 48px; padding: 8px 3px; }
+    .flip-num { font-size: 20px; }
+  }
+
   footer {
     position: relative;
     border-top: 1px solid var(--borde);
@@ -345,6 +399,29 @@
     </div>
   </div>
 </div>
+
+<section class="plazos">
+  <div class="kicker">Los plazos no esperan</div>
+  <h2>Dos fechas que ya están corriendo</h2>
+  <div class="plazos-grid">
+    <div class="plazo-card">
+      <div class="plazo-etiqueta">Próxima edición de Marco Cripto LATAM</div>
+      <div class="plazo-numero"><span class="num" id="dias-proxima-edicion">—</span><span class="unidad">días</span></div>
+      <div class="plazo-fecha" id="fecha-proxima-edicion">Calculando fecha de envío…</div>
+    </div>
+    <div class="plazo-card plazo-brasil">
+      <div class="plazo-etiqueta">Brasil corta el acceso a bancos a VASPs no autorizados</div>
+      <div class="reloj-flip" id="reloj-brasil">
+        <div class="flip-unidad"><span class="flip-num" id="cr-dias">00</span><span class="flip-etq">días</span></div>
+        <div class="flip-unidad"><span class="flip-num" id="cr-horas">00</span><span class="flip-etq">hs</span></div>
+        <div class="flip-unidad"><span class="flip-num" id="cr-min">00</span><span class="flip-etq">min</span></div>
+        <div class="flip-unidad"><span class="flip-num" id="cr-seg">00</span><span class="flip-etq">seg</span></div>
+      </div>
+      <div class="plazo-barra"><div class="plazo-barra-relleno" id="barra-plazo-relleno"></div></div>
+      <div class="plazo-nota">30 de octubre de 2026 · ya transcurrió <strong id="pct-transcurrido">—</strong>% del plazo de 270 días que el Banco Central le dio al sector desde el 2 de febrero de 2026</div>
+    </div>
+  </div>
+</section>
 
 <section class="problema">
   <div class="kicker">El problema</div>
@@ -495,6 +572,69 @@
   if (params.get("pago") === "exitoso") {
     document.getElementById("banner-exito").classList.add("visible");
   }
+
+  // ---------- Contadores en vivo ----------
+  (function () {
+    function pad(n) { return String(Math.max(0, n)).padStart(2, "0"); }
+
+    // Próxima edición: el envío corre todos los lunes 14:00 UTC (envio.yml), pero
+    // enviar.py se autodescarta si no pasaron al menos 13 días desde la última
+    // (DIAS_MINIMOS_ENTRE_EDICIONES). La Edición #1 salió el 28/09/2026 (lunes);
+    // el primer lunes que ya cumple el mínimo de ~14 días es el 12/10/2026.
+    var FECHA_PROXIMA_EDICION = new Date("2026-10-12T14:00:00Z");
+    var elDiasEdicion = document.getElementById("dias-proxima-edicion");
+    var elFechaEdicion = document.getElementById("fecha-proxima-edicion");
+
+    function actualizarProximaEdicion() {
+      var restante = FECHA_PROXIMA_EDICION - new Date();
+      var dias = Math.max(0, Math.ceil(restante / 86400000));
+      if (elDiasEdicion) elDiasEdicion.textContent = dias;
+      if (elFechaEdicion) {
+        elFechaEdicion.textContent = dias > 0
+          ? "Se envía el " + FECHA_PROXIMA_EDICION.toLocaleDateString("es-AR", { day: "numeric", month: "long", year: "numeric" })
+          : "En camino";
+      }
+    }
+
+    // Brasil — Resolução BCB 519/2025: desde el 30/10/2026 las instituciones
+    // autorizadas no pueden seguir operando con VASPs no autorizados; es también
+    // el día 270 del plazo de autorización que arrancó el 02/02/2026.
+    var FECHA_LIMITE_BRASIL = new Date("2026-10-30T00:00:00-03:00");
+    var INICIO_PLAZO_BRASIL = new Date("2026-02-02T00:00:00-03:00");
+
+    var elDias = document.getElementById("cr-dias");
+    var elHoras = document.getElementById("cr-horas");
+    var elMin = document.getElementById("cr-min");
+    var elSeg = document.getElementById("cr-seg");
+    var elBarra = document.getElementById("barra-plazo-relleno");
+    var elPct = document.getElementById("pct-transcurrido");
+
+    function actualizarRelojBrasil() {
+      var ahora = new Date();
+      var restante = Math.max(0, FECHA_LIMITE_BRASIL - ahora);
+
+      var dias = Math.floor(restante / 86400000);
+      var horas = Math.floor((restante % 86400000) / 3600000);
+      var min = Math.floor((restante % 3600000) / 60000);
+      var seg = Math.floor((restante % 60000) / 1000);
+
+      if (elDias) elDias.textContent = pad(dias);
+      if (elHoras) elHoras.textContent = pad(horas);
+      if (elMin) elMin.textContent = pad(min);
+      if (elSeg) elSeg.textContent = pad(seg);
+
+      var totalPlazo = FECHA_LIMITE_BRASIL - INICIO_PLAZO_BRASIL;
+      var transcurrido = ahora - INICIO_PLAZO_BRASIL;
+      var pct = Math.min(100, Math.max(0, (transcurrido / totalPlazo) * 100));
+      if (elBarra) elBarra.style.width = pct.toFixed(1) + "%";
+      if (elPct) elPct.textContent = pct.toFixed(0);
+    }
+
+    actualizarProximaEdicion();
+    actualizarRelojBrasil();
+    setInterval(actualizarProximaEdicion, 60000);
+    setInterval(actualizarRelojBrasil, 1000);
+  })();
 </script>
 
 </body>
