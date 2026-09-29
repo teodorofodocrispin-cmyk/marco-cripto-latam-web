@@ -59,26 +59,12 @@
     position: relative;
     overflow: hidden;
     background:
-      radial-gradient(circle at 18% 112%, rgba(255,255,255,0.05) 1.5px, transparent 1.5px),
-      linear-gradient(160deg, var(--oscuro) 0%, var(--oscuro-2) 45%, var(--acento) 72%, var(--acento-claro) 100%);
-    background-size: 26px 26px, 100% 100%;
+      linear-gradient(160deg, rgba(5,20,28,0.90) 0%, rgba(6,49,63,0.84) 42%, rgba(10,92,117,0.74) 70%, rgba(47,111,237,0.62) 100%),
+      url('fondo-hero.jpg') center center / cover no-repeat;
     color: #fff;
     text-align: center;
     padding: 60px 20px 76px;
   }
-  .hero .glow { position: absolute; border-radius: 50%; filter: blur(70px); pointer-events: none; }
-  .hero .glow-1 {
-    width: 420px; height: 420px; top: -160px; right: -120px;
-    background: radial-gradient(circle, rgba(47,111,237,0.55), transparent 70%);
-    animation: flotar1 13s ease-in-out infinite alternate;
-  }
-  .hero .glow-2 {
-    width: 360px; height: 360px; bottom: -180px; left: -100px;
-    background: radial-gradient(circle, rgba(10,92,117,0.65), transparent 70%);
-    animation: flotar2 16s ease-in-out infinite alternate;
-  }
-  @keyframes flotar1 { from { transform: translate(0,0) scale(1); } to { transform: translate(-30px, 25px) scale(1.08); } }
-  @keyframes flotar2 { from { transform: translate(0,0) scale(1); } to { transform: translate(25px, -20px) scale(1.05); } }
 
   .hero-contenido { position: relative; z-index: 1; }
 
@@ -301,7 +287,7 @@
   footer a { color: var(--acento); text-decoration: none; font-weight: 600; }
 
   @media (prefers-reduced-motion: reduce) {
-    .hero .glow, .cta::after { animation: none !important; transition: none !important; }
+    .cta::after { animation: none !important; transition: none !important; }
   }
 </style>
 </head>
@@ -312,9 +298,6 @@
 </div>
 
 <div class="hero">
-  <div class="glow glow-1"></div>
-  <div class="glow glow-2"></div>
-
   <div class="hero-contenido">
     <img class="hero-logo" src="icono-blanco.png" alt="">
     <div class="hero-marca">Marco Cripto LATAM</div>
