@@ -187,6 +187,12 @@
 
   /* ---------- CÓMO FUNCIONA (cadena de verificación) ---------- */
   .metodologia { background: var(--fondo-suave); }
+  .problema {
+    border-radius: 18px;
+    background:
+      linear-gradient(160deg, rgba(255,255,255,0.72) 0%, rgba(242,248,250,0.8) 100%),
+      url('fondo-hero-claro.jpg') center 35% / cover no-repeat;
+  }
   .cadena {
     display: flex; align-items: flex-start; justify-content: center;
     gap: 0; max-width: 720px; margin: 0 auto;
@@ -340,7 +346,7 @@
   </div>
 </div>
 
-<section>
+<section class="problema">
   <div class="kicker">El problema</div>
   <h2>Rastrear seis reguladores no es un resumen — es un trabajo de tiempo completo</h2>
   <p class="narrativa">
