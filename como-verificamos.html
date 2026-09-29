@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cómo verificamos cada hallazgo — Marco Cripto LATAM</title>
+<meta name="description" content="El proceso completo, paso por paso: de la publicación oficial a la cita verificada. Qué significa 'verificado', cuándo no publicamos, y nuestra política de correcciones.">
+<link rel="icon" type="image/png" href="icono-blanco.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --acento: #0a5c75;
+    --acento-claro: #2f6fed;
+    --texto: #16232a;
+    --texto-suave: #4a555c;
+    --borde: #e3e8ea;
+    --fondo-suave: #f2f8fa;
+    --oscuro: #05141c;
+    --oscuro-2: #06313f;
+    --sombra: 0 10px 40px rgba(10,40,55,0.10);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    color: var(--texto);
+    line-height: 1.6;
+    background: #fff;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  h1, h2, h3 { font-family: "Space Grotesk", "Inter", sans-serif; }
+
+  .encabezado {
+    background: linear-gradient(160deg, var(--oscuro) 0%, var(--oscuro-2) 45%, var(--acento) 72%, var(--acento-claro) 100%);
+    color: #fff;
+    text-align: center;
+    padding: 46px 20px 58px;
+  }
+  .encabezado .volver {
+    display: inline-block; font-size: 13px; color: rgba(255,255,255,0.75);
+    text-decoration: none; margin-bottom: 22px;
+  }
+  .encabezado .volver:hover { color: #fff; }
+  .encabezado .kicker {
+    font-size: 12px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase;
+    color: rgba(255,255,255,0.7); margin-bottom: 12px;
+  }
+  .encabezado h1 { font-size: clamp(26px, 4.5vw, 34px); font-weight: 500; margin: 0 0 16px; max-width: 680px; margin-left: auto; margin-right: auto; }
+  .encabezado p { font-size: 16px; color: rgba(255,255,255,0.88); max-width: 600px; margin: 0 auto; }
+
+  section { max-width: 780px; margin: 0 auto; padding: 60px 24px; }
+  section .kicker {
+    text-align: center; font-size: 12px; font-weight: 700; letter-spacing: 1.2px;
+    text-transform: uppercase; color: var(--acento-claro); margin-bottom: 10px;
+  }
+  section h2 { color: var(--texto); font-size: 23px; font-weight: 600; text-align: center; margin: 0 0 36px; }
+  section > p.intro { max-width: 600px; margin: 0 auto 36px; text-align: center; color: var(--texto-suave); font-size: 15px; }
+
+  .franja { background: var(--fondo-suave); }
+
+  /* ---------- CADENA VERTICAL DE 7 PASOS ---------- */
+  .cadena-vertical { max-width: 560px; margin: 0 auto; }
+  .paso { display: flex; gap: 18px; position: relative; padding-bottom: 30px; }
+  .paso:last-child { padding-bottom: 0; }
+  .paso::before {
+    content: ""; position: absolute; left: 21px; top: 46px; bottom: 6px; width: 2px;
+    background: linear-gradient(180deg, var(--acento-claro), var(--borde));
+    opacity: 0.4;
+  }
+  .paso:last-child::before { display: none; }
+  .paso .num {
+    flex: 0 0 44px; height: 44px; border-radius: 50%;
+    background: #fff; border: 2px solid var(--acento-claro);
+    display: flex; align-items: center; justify-content: center;
+    font-family: "Space Grotesk", sans-serif; font-weight: 700; font-size: 15px; color: var(--acento);
+    box-shadow: 0 0 0 5px rgba(47,111,237,0.08);
+    z-index: 1;
+  }
+  .paso .cont h3 { font-size: 15.5px; margin: 8px 0 5px; color: var(--texto); font-weight: 600; }
+  .paso .cont p { font-size: 14px; color: var(--texto-suave); margin: 0; }
+
+  /* ---------- TABLA DE REGULADORES ---------- */
+  table.reguladores { width: 100%; border-collapse: collapse; font-size: 13.8px; }
+  table.reguladores th {
+    text-align: left; padding: 10px 12px; background: var(--fondo-suave);
+    color: var(--texto-suave); font-size: 12px; text-transform: uppercase; letter-spacing: 0.4px;
+  }
+  table.reguladores td { padding: 12px; border-bottom: 1px solid var(--borde); vertical-align: top; }
+  table.reguladores td a { color: var(--acento); text-decoration: none; font-weight: 600; }
+  table.reguladores td a:hover { text-decoration: underline; }
+  table.reguladores .pais { font-weight: 600; white-space: nowrap; }
+
+  /* ---------- TARJETA DE HALLAZGO ANOTADA ---------- */
+  .tarjeta-anotada {
+    background: #fff; border: 1px solid var(--borde); border-radius: 14px;
+    padding: 26px; box-shadow: var(--sombra); position: relative;
+  }
+  .anot { margin-bottom: 16px; }
+  .anot:last-child { margin-bottom: 0; }
+  .anot .etq {
+    display: inline-block; font-size: 10.5px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.5px; color: var(--acento); background: var(--fondo-suave);
+    padding: 3px 9px; border-radius: 5px; margin-bottom: 7px;
+  }
+  .anot .valor { font-size: 14.5px; color: var(--texto); margin: 0; }
+  .anot blockquote {
+    margin: 0; padding: 12px 16px; background: var(--fondo-suave); border-left: 3px solid var(--acento-claro);
+    font-size: 13.5px; color: var(--texto-suave); font-style: italic; border-radius: 0 6px 6px 0;
+  }
+  .anot .meta { display: flex; gap: 8px; flex-wrap: wrap; }
+  .chip-meta {
+    font-size: 11.5px; background: var(--oscuro-2); color: #fff; padding: 3px 10px;
+    border-radius: 999px; font-weight: 600;
+  }
+
+  .props-simple { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 22px; }
+  .prop-simple {
+    background: #fff; border: 1px solid var(--borde); border-radius: 14px; padding: 24px 22px;
+  }
+  .prop-simple h3 { font-size: 15.5px; margin: 0 0 8px; color: var(--texto); font-weight: 600; }
+  .prop-simple p { font-size: 14px; color: var(--texto-suave); margin: 0; }
+
+  .nota-correcciones {
+    background: var(--fondo-suave); border-left: 3px solid var(--acento); border-radius: 4px;
+    padding: 18px 20px; font-size: 14px; color: var(--texto-suave);
+  }
+
+  footer {
+    border-top: 1px solid var(--borde); text-align: center; padding: 34px 20px 50px;
+    font-size: 13px; color: var(--texto-suave);
+  }
+  footer a { color: var(--acento); text-decoration: none; font-weight: 600; }
+
+  @media (max-width: 560px) {
+    .paso { gap: 14px; }
+    .paso .num { flex: 0 0 38px; height: 38px; font-size: 13px; }
+    .paso::before { left: 18px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="encabezado">
+  <a class="volver" href="index.html">← Marco Cripto LATAM</a>
+  <div class="kicker">Metodología</div>
+  <h1>Cómo verificamos cada hallazgo</h1>
+  <p>Esto no es un blog de cripto. Es el proceso, de punta a punta, que sigue cada afirmación antes de
+  llegar a tu bandeja de entrada.</p>
+</div>
+
+<section>
+  <div class="kicker">El proceso</div>
+  <h2>Fuente oficial → documento → artículo → cita exacta → revisión humana → análisis → publicación</h2>
+  <div class="cadena-vertical">
+    <div class="paso">
+      <div class="num">1</div>
+      <div class="cont">
+        <h3>Fuente oficial</h3>
+        <p>Vigilamos directamente las páginas y publicaciones de bancos centrales, comisiones de
+        valores, unidades de inteligencia financiera, superintendencias y diarios oficiales — nunca un
+        resumen de un tercero.</p>
+      </div>
+    </div>
+    <div class="paso">
+      <div class="num">2</div>
+      <div class="cont">
+        <h3>Documento</h3>
+        <p>Cuando una fuente cambia, extraemos el texto completo del documento oficial —resolución,
+        circular, ley o comunicado— tal como fue publicado.</p>
+      </div>
+    </div>
+    <div class="paso">
+      <div class="num">3</div>
+      <div class="cont">
+        <h3>Artículo</h3>
+        <p>Cada cambio se ubica en su artículo, inciso o sección exacta dentro del documento — nunca
+        una referencia genérica a "la norma" o "el reglamento".</p>
+      </div>
+    </div>
+    <div class="paso">
+      <div class="num">4</div>
+      <div class="cont">
+        <h3>Cita exacta</h3>
+        <p>Un modelo de lenguaje extrae la frase textual que respalda cada afirmación, copiada palabra
+        por palabra del documento — nunca se le permite inferir, resumir la cita o completar con
+        conocimiento general.</p>
+      </div>
+    </div>
+    <div class="paso">
+      <div class="num">5</div>
+      <div class="cont">
+        <h3>Revisión humana</h3>
+        <p>Antes de publicar, una persona compara cada cita contra el documento oficial, palabra por
+        palabra. Si no coincide exactamente, o si la cita no respalda todo lo que dice el resumen, se
+        descarta — no se publica "aproximadamente correcto".</p>
+      </div>
+    </div>
+    <div class="paso">
+      <div class="num">6</div>
+      <div class="cont">
+        <h3>Análisis</h3>
+        <p>Redactamos qué significa el cambio en lenguaje simple: qué debe revisar tu equipo, sin
+        agregar plazos, montos o interpretaciones que el texto citado no diga explícitamente.</p>
+      </div>
+    </div>
+    <div class="paso">
+      <div class="num">7</div>
+      <div class="cont">
+        <h3>Publicación</h3>
+        <p>El hallazgo se publica en el informe quincenal, con enlace a la fuente oficial para que
+        cualquiera lo verifique de nuevo, de forma independiente.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="franja">
+  <div class="kicker">Fuentes</div>
+  <h2>Reguladores que monitoreamos hoy</h2>
+  <p class="intro">Solo fuentes primarias. Los medios y despachos de abogados se usan como contexto para
+  entender un cambio, nunca como la fuente de una cita.</p>
+  <table class="reguladores">
+    <tr><th>País</th><th>Regulador</th><th>Qué vigilamos</th></tr>
+    <tr>
+      <td class="pais">🇧🇷 Brasil</td>
+      <td>Banco Central do Brasil</td>
+      <td><a href="https://www.bcb.gov.br/estabilidadefinanceira/exibenormativo?tipo=Resolução+BCB&numero=519" target="_blank" rel="noopener">Resolução BCB 519</a>, <a href="https://www.bcb.gov.br/estabilidadefinanceira/exibenormativo?tipo=Resolução+BCB&numero=520" target="_blank" rel="noopener">520</a> y <a href="https://www.bcb.gov.br/estabilidadefinanceira/exibenormativo?tipo=Resolução+BCB&numero=521" target="_blank" rel="noopener">521</a> — régimen de PSAV</td>
+    </tr>
+    <tr>
+      <td class="pais">🇲🇽 México</td>
+      <td>Banxico</td>
+      <td><a href="https://www.banxico.org.mx/marco-normativo/normativa-emitida-por-el-banco-de-mexico/circular-4-2019/%7B8D7769AF-03F6-701A-68AA-EF25A73AD035%7D.pdf" target="_blank" rel="noopener">Circular 4/2019</a> — operaciones con activos virtuales</td>
+    </tr>
+    <tr>
+      <td class="pais">🇨🇴 Colombia</td>
+      <td>Superintendencia Financiera</td>
+      <td><a href="https://www.superfinanciera.gov.co/publicaciones/10082380/normativaproyectos-de-normatividadproyectos-de-norma-10082380/" target="_blank" rel="noopener">Proyectos de normatividad</a> y <a href="https://www.superfinanciera.gov.co/publicaciones/10115974/circulares-externas-2026/" target="_blank" rel="noopener">circulares externas vigentes</a></td>
+    </tr>
+    <tr>
+      <td class="pais">🇦🇷 Argentina</td>
+      <td>CNV</td>
+      <td><a href="https://servicios.infoleg.gob.ar/infolegInternet/anexos/215000-219999/219405/texact-TituloXIV-CapIII.htm" target="_blank" rel="noopener">Régimen PSAV</a> — Título XIV, Cap. III</td>
+    </tr>
+    <tr>
+      <td class="pais">🇨🇱 Chile</td>
+      <td>Congreso Nacional / CMF</td>
+      <td><a href="https://www.bcn.cl/leychile/navegar?idNorma=1187323" target="_blank" rel="noopener">Ley 21.521</a> — Ley Fintec</td>
+    </tr>
+    <tr>
+      <td class="pais">🇺🇾 Uruguay</td>
+      <td>BCU</td>
+      <td><a href="https://www.bcu.gub.uy/Circulares/seggci2507.pdf" target="_blank" rel="noopener">Circular 2507</a> — proveedores de servicios de activos virtuales</td>
+    </tr>
+  </table>
+</section>
+
+<section>
+  <div class="kicker">Ejemplo real</div>
+  <h2>Anatomía de un hallazgo</h2>
+  <p class="intro">Así se ve, por dentro, uno de los hallazgos que efectivamente publicamos.</p>
+  <div class="tarjeta-anotada">
+    <div class="anot">
+      <span class="etq">Afirmación</span>
+      <p class="valor">Las empresas cripto que ya operan en Brasil deben pedir autorización al Banco Central de Brasil (BCB) dentro de 270 días desde la entrada en vigor.</p>
+    </div>
+    <div class="anot">
+      <span class="etq">Cita textual</span>
+      <blockquote>&ldquo;solicitar autorização para funcionamento no Brasil, no prazo máximo de duzentos e setenta dias contados a partir da data da entrada em vigor desta Resolução&rdquo;</blockquote>
+    </div>
+    <div class="anot">
+      <span class="etq">Documento y artículo</span>
+      <p class="valor">Resolução BCB n.º 519/2025 — Art. 88, inciso I</p>
+    </div>
+    <div class="anot">
+      <span class="etq">Por qué importa</span>
+      <p class="valor">Si ya presta servicios de intermediación o custodia en Brasil, debe presentar su solicitud de autorización dentro de ese plazo.</p>
+    </div>
+    <div class="anot">
+      <div class="meta">
+        <span class="chip-meta">Prioridad: alta</span>
+        <span class="chip-meta">Aplicabilidad: universal</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="franja">
+  <div class="kicker">Qué significa cada estado</div>
+  <h2>Verificado, y cuándo no publicamos</h2>
+  <div class="props-simple">
+    <div class="prop-simple">
+      <h3>Qué significa "verificado"</h3>
+      <p>Que la cita textual se comparó, palabra por palabra, contra el documento oficial —no un
+      resumen ni una versión cacheada— y coincide exactamente. Es una verificación mecánica de
+      existencia, hecha por una persona; no es una opinión legal sobre el fondo de la norma.</p>
+    </div>
+    <div class="prop-simple">
+      <h3>Cuándo no publicamos</h3>
+      <p>Si la cita no se puede encontrar tal cual en la fuente, si respalda solo parte de lo que dice
+      el resumen, o si hay duda genuina sobre su alcance, el hallazgo se descarta. Preferimos un
+      informe más corto a uno con algo que no podemos respaldar.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="kicker">Cuando nos equivocamos</div>
+  <h2>Política de correcciones</h2>
+  <div class="nota-correcciones">
+    <p style="margin:0 0 10px;">Si un suscriptor o nosotros mismos detectamos que una cita, un artículo o una fecha están mal, lo
+    corregimos en público y avisamos por correo a quienes recibieron esa edición. Cada corrección
+    queda registrada acá, con la fecha, la edición afectada y qué cambió.</p>
+    <p style="margin:0;font-weight:600;">Todavía no tenemos ninguna corrección que reportar. En cuanto ocurra una, aparece en esta misma
+    sección.</p>
+  </div>
+</section>
+
+<section class="franja">
+  <div class="kicker">Para que quede claro</div>
+  <h2>Qué es, y qué no es, Marco Cripto LATAM</h2>
+  <div class="props-simple">
+    <div class="prop-simple">
+      <h3>Qué es</h3>
+      <p>Un briefing quincenal que traduce cambios regulatorios oficiales sobre stablecoins y cripto en
+      LATAM a lenguaje simple, con cada afirmación respaldada por su cita exacta y verificada por una
+      persona.</p>
+    </div>
+    <div class="prop-simple">
+      <h3>Qué no es</h3>
+      <p>No es asesoría legal, no es monitoreo de transacciones on-chain, y no es una alerta automática
+      sin revisión humana. Es el insumo para que tu equipo de compliance —o tu abogado— tome la
+      decisión, no la decisión en sí misma.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Marco Cripto LATAM — <a href="index.html">Volver al inicio</a> — ¿preguntas? escribinos a
+  <a href="mailto:briefing@inscrbd.xyz">briefing@inscrbd.xyz</a>
+</footer>
+
+</body>
+</html>

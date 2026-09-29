@@ -253,6 +253,38 @@
   .precio .cta { background: var(--acento); color: #fff; }
   .precio .cta:hover { box-shadow: 0 10px 30px rgba(10,92,117,0.4); }
 
+  .cta-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin-bottom: 30px; }
+  .cta-secundario {
+    display: inline-block;
+    background: transparent;
+    color: #fff;
+    padding: 15.5px 30px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    border: 1.5px solid rgba(255,255,255,0.38);
+    transition: border-color 0.25s ease, background 0.25s ease;
+  }
+  .cta-secundario:hover { border-color: rgba(255,255,255,0.85); background: rgba(255,255,255,0.06); }
+
+  .narrativa { max-width: 640px; margin: 0 auto; text-align: center; color: var(--texto-suave); font-size: 15px; }
+
+  .ver-mas { text-align: center; margin-top: 34px; }
+  .ver-mas a { color: var(--acento); font-weight: 600; text-decoration: none; font-size: 14.5px; }
+  .ver-mas a:hover { text-decoration: underline; }
+
+  .faq { max-width: 660px; margin: 0 auto; }
+  .faq details {
+    background: #fff; border: 1px solid var(--borde); border-radius: 10px;
+    padding: 16px 20px; margin-bottom: 12px;
+  }
+  .faq summary { font-weight: 600; font-size: 15px; cursor: pointer; color: var(--texto); }
+  .faq p { margin: 10px 0 0; color: var(--texto-suave); font-size: 14px; }
+
+  .cierre-final { text-align: center; padding: 6px 24px 0; }
+  .cierre-final a { color: var(--acento); font-weight: 700; text-decoration: none; font-size: 15px; }
+
   footer {
     position: relative;
     border-top: 1px solid var(--borde);
@@ -292,10 +324,11 @@
       Análisis con IA · verificado palabra por palabra por un humano
     </div>
 
-    <h1>Inteligencia regulatoria quincenal sobre stablecoins y cripto en LATAM</h1>
+    <h1>Cada cambio regulatorio cripto en LATAM, con la cita exacta y el artículo que lo dice.</h1>
     <p class="tagline">
-      Para equipos de cumplimiento que no pueden darse el lujo de enterarse tarde de un
-      cambio normativo — cada hallazgo, con su cita textual exacta.
+      Briefing quincenal para equipos de Compliance sobre regulación de stablecoins y criptoactivos en
+      Brasil, México, Colombia, Argentina, Chile y Uruguay. Fuente oficial, cita literal y revisión
+      humana en cada hallazgo.
     </p>
 
     <div class="pills-confianza">
@@ -304,7 +337,14 @@
       <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a13 13 0 0 1 0 18 13 13 0 0 1 0-18Z"/></svg>6 países</span>
     </div>
 
-    <a class="cta" href="#" id="cta-suscribirse">Suscribirme — $199 USD/mes →</a>
+    <!-- CTA principal: hoy manda a la guía gratuita (adelanto), porque la Edición #1 real
+         se generó antes del fix del 29/09/2026 y no queremos exhibirla como muestra.
+         En cuanto salga la Edición #2 (no antes del 10/10/2026), cambiar el texto a
+         "Ver una edición completa →" y el href al PDF público de esa edición. -->
+    <div class="cta-row">
+      <a class="cta" href="guia.html" id="cta-muestra">Ver un adelanto gratuito →</a>
+      <a class="cta-secundario" href="como-verificamos.html">Cómo verificamos cada hallazgo →</a>
+    </div>
 
     <div class="paises">
       <span class="pais-chip">🇧🇷 Brasil</span>
@@ -318,8 +358,22 @@
 </div>
 
 <section>
-  <div class="kicker">La diferencia</div>
-  <h2>¿Por qué existe este informe?</h2>
+  <div class="kicker">El problema</div>
+  <h2>Rastrear seis reguladores no es un resumen — es un trabajo de tiempo completo</h2>
+  <p class="narrativa">
+    Implica leer documentos en dos idiomas, en formatos distintos, publicados sin aviso. Los resúmenes
+    que circulan a menudo no dicen en qué artículo está cada cosa, y a veces difieren entre sí. Tu
+    equipo no puede firmar una decisión sobre algo que no puede rastrear.
+  </p>
+</section>
+
+<section>
+  <div class="kicker">La solución</div>
+  <h2>Cada quincena revisamos las publicaciones oficiales y te enviamos solo lo relevante</h2>
+  <p class="narrativa" style="margin-bottom:44px;">
+    Cada hallazgo trae qué cambió, la frase exacta, el documento y artículo, y qué conviene revisar
+    internamente — para operadores de cripto y stablecoins, no para el sector en general.
+  </p>
   <div class="props">
     <div class="prop">
       <div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.5 8.5 8 11 4.5-2.5 8-6 8-11V5l-8-3Z"/><path d="m9 12 2 2 4-4"/></svg></div>
@@ -364,6 +418,24 @@
       <p>Antes de publicar, cada cita se compara a mano contra el documento oficial. Si no coincide exactamente, se descarta.</p>
     </div>
   </div>
+  <div class="ver-mas"><a href="como-verificamos.html">Ver el proceso completo, paso por paso →</a></div>
+</section>
+
+<section>
+  <div class="kicker">Para quién es esto</div>
+  <h2>Pensado para quien tiene que responder por la decisión</h2>
+  <div class="props">
+    <div class="prop">
+      <h3>Para quién es</h3>
+      <p>Oficiales de cumplimiento, Heads of Compliance, AML/MLRO, Legal y Regulatory Affairs de
+      fintechs, VASPs, PSPs y empresas de remesas que operan en más de un país de LATAM.</p>
+    </div>
+    <div class="prop">
+      <h3>Qué no es</h3>
+      <p>No es asesoría legal, no es monitoreo de transacciones on-chain, y no es una alerta automática
+      sin revisión — cada hallazgo pasa por una persona antes de llegar a tu bandeja.</p>
+    </div>
+  </div>
 </section>
 
 <section class="precio-wrap">
@@ -371,19 +443,56 @@
   <h2>Precio</h2>
   <div class="precio">
     <div class="monto">$199</div>
-    <div class="periodo">USD / mes</div>
+    <div class="periodo">USD / mes, por equipo</div>
     <ul>
       <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Un informe completo cada quince días, en PDF</li>
       <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Cobertura de Brasil, México, Colombia, Argentina, Chile y Uruguay</li>
       <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Cada afirmación respaldada por su cita textual oficial</li>
-      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Cancelá cuando quieras, sin permanencia</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Sin contrato — cancelá cuando quieras</li>
     </ul>
-    <a class="cta" href="#" id="cta-suscribirse-2">Suscribirme ahora →</a>
+    <a class="cta" href="#" id="cta-suscribirse">Suscribirme ahora →</a>
   </div>
 </section>
 
+<section>
+  <div class="kicker">Preguntas frecuentes</div>
+  <h2>FAQ</h2>
+  <div class="faq">
+    <details>
+      <summary>¿Es asesoría legal?</summary>
+      <p>No. Te entregamos qué cambió y dónde está escrito, con la cita exacta — la interpretación para
+      tu caso particular sigue siendo trabajo de tu asesor legal.</p>
+    </details>
+    <details>
+      <summary>¿Qué pasa si una cita está mal?</summary>
+      <p>La corregimos en público y avisamos a los suscriptores. Cada corrección queda registrada con
+      fecha en nuestra página de metodología.</p>
+    </details>
+    <details>
+      <summary>¿Por qué no un abogado?</summary>
+      <p>Un abogado interpreta para tu caso; nosotros te entregamos qué cambió y dónde está escrito —
+      el insumo que tu abogado necesita para interpretar, no un reemplazo de esa interpretación.</p>
+    </details>
+    <details>
+      <summary>¿Por qué no ChatGPT?</summary>
+      <p>Porque no puede garantizar que la cita existe tal cual en el documento oficial. Un modelo de
+      lenguaje hace la primera extracción, pero una persona comprueba cada cita, palabra por palabra,
+      antes de publicar.</p>
+    </details>
+    <details>
+      <summary>¿Puedo compartirlo con mi equipo?</summary>
+      <p>Sí — la suscripción es por equipo, no por persona: cualquiera de tu equipo puede recibir y leer
+      el mismo informe.</p>
+    </details>
+  </div>
+</section>
+
+<div class="cierre-final">
+  <a href="guia.html">Recibí un adelanto gratuito y decidí después →</a>
+</div>
+
 <footer>
-  Marco Cripto LATAM — ¿preguntas? escribinos a
+  Marco Cripto LATAM — <a href="como-verificamos.html">Cómo verificamos cada hallazgo</a> — ¿preguntas? escribinos a
   <a href="mailto:briefing@inscrbd.xyz">briefing@inscrbd.xyz</a>
 </footer>
 
@@ -391,7 +500,6 @@
   // Enlace de checkout de Polar — se actualiza cuando se genera el link final.
   var CHECKOUT_URL = "https://buy.polar.sh/polar_cl_aTTpDrwl2VBTId9PJP6VstYfuN2Pu3W5xpRGT4Rp69Y";
   document.getElementById("cta-suscribirse").href = CHECKOUT_URL;
-  document.getElementById("cta-suscribirse-2").href = CHECKOUT_URL;
 
   // Muestra el banner de agradecimiento si volvemos desde un pago exitoso.
   var params = new URLSearchParams(window.location.search);
